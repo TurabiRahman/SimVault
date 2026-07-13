@@ -1,0 +1,31 @@
+# dependencies
+node_modules/
+
+# uploads
+uploads/
+
+# logs
+*.log
+logs/
+
+# environment
+.env
+.env.local
+
+# secrets
+*.pem
+*.key
+*.secret
+
+# operating system
+.DS_Store
+Thumbs.db
+
+# vscode
+.vscode/
+
+# npm
+npm-debug.log*
+
+# coverage
+coverage/
