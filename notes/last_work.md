@@ -123,3 +123,113 @@ simvault=#
 
 
 
+# -------------------------->
+
+API 1
+Upload CSV
+POST /api/upload
+
+Purpose
+
+Upload a CSV and store data.
+
+Method
+
+POST
+
+Headers
+
+Content-Type: multipart/form-data
+
+Body
+
+csv_file
+
+Uploaded as form-data.
+
+No JSON.
+
+Because Multer handles files.
+
+Response
+
+{
+  "success": true,
+  "totalRows": 1000,
+  "citizensAdded": 350,
+  "simsAdded": 900,
+  "duplicateSIMs": 80,
+  "rejectedRows": 20
+}
+API 2
+
+Search Citizen
+
+GET /api/citizens/:voterId
+
+Example
+
+GET /api/citizens/1234567890
+
+Method
+
+GET
+
+Headers
+
+Accept: application/json
+
+Body
+
+None
+
+GET requests shouldn't have a body.
+
+Response
+
+{
+  "voterId": "1234567890",
+  "firstName": "Turabi",
+  "lastName": "Rahman",
+  "sims": [
+    {
+      "company": "Grameenphone",
+      "number": "01711111111",
+      "registrationDate": "2024-01-15",
+      "expiryDate": "2030-01-15"
+    },
+    {
+      "company": "Robi",
+      "number": "01822222222",
+      "registrationDate": "2023-06-12",
+      "expiryDate": "2029-06-12"
+    }
+  ]
+}
+API 3
+
+Export CSV
+
+GET /api/citizens/:voterId/export
+
+Example
+
+GET /api/citizens/1234567890/export
+
+Method
+
+GET
+
+Headers
+
+Accept: text/csv
+
+Body
+
+None.
+
+Response
+
+Downloads
+
+turabi_rahman.csv
