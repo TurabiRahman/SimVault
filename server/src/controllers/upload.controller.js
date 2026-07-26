@@ -18,6 +18,8 @@ const uploadCSV = async (req, res) => {
 
         const rows = await uploadService.readCSV(req.file.path);
 
+        uploadService.validateCSVColumns(rows);
+
         res.status(200).json({
             success: true,
             rows,
