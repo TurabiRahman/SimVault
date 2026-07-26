@@ -47,14 +47,70 @@ const validateCSVColumns = (rows) => {
             throw new Error(`Missing required column: ${column}`);
         }
     }
-
 };
 
+const findCitizenByVoterId = async (voterId) => {
 
+    const query = `
+        select *
+        from citizen
+        where voter_id = $1
+    `;
 
+    const result = await pool.query(query, [voterId]);
+    return result.rows[0];
+};
+
+const createCitizen = async (citizenData) => {
+
+    const query = `
+        INSERT INTO citizen
+        (voter_id, first_name, last_name)
+        VALUES ($1, $2, $3)
+        RETURNING id;
+    `;
+
+    const values = [
+        citizenData.voter_id,
+        citizenData.first_name,
+        citizenData.last_name,
+    ];
+
+    const result = await pool.query(query, values);
+
+    return result.rows[0].id;//////
+};
+
+const processCitizens = async (rows) => {
+
+    const processedRows = [];
+
+    for(const row of rows)
+    {
+        let citizen = await findCitizenByVoterId(row.voter_id);
+
+        if(!citizen)
+        {
+            const citizenId = await createCitizen(row);
+            citizen = { id: citizenId};
+        }   
+
+        processedRows.push(
+            {
+                ...row,
+                citizen_id: citizen.id
+            }
+        );
+    }
+
+    return processedRows;
+};
 
 
 module.exports = {
     readCSV,
-    validateCSVColumns
+    validateCSVColumns,
+    findCitizenByVoterId,
+    createCitizen,
+    processCitizens,
 };

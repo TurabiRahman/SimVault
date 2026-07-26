@@ -20,9 +20,11 @@ const uploadCSV = async (req, res) => {
 
         uploadService.validateCSVColumns(rows);
 
+        const processedRows = await uploadService.processCitizens(rows);
+
         res.status(200).json({
             success: true,
-            rows,
+            rows: processedRows,
         });
 
     } catch (error) {
