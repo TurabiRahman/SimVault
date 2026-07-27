@@ -22,9 +22,11 @@ const uploadCSV = async (req, res) => {
 
         const processedRows = await uploadService.processCitizens(rows);
 
+        const summary = await uploadService.processSIMs(processedRows);
+
         res.status(200).json({
             success: true,
-            rows: processedRows,
+            summary,
         });
 
     } catch (error) {

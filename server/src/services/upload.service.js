@@ -78,7 +78,7 @@ const createCitizen = async (citizenData) => {
 
     const result = await pool.query(query, values);
 
-    return result.rows[0].id;//////
+    return result.rows[0].id;
 };
 
 const processCitizens = async (rows) => {
@@ -106,6 +106,79 @@ const processCitizens = async (rows) => {
     return processedRows;
 };
 
+const findSIMByNumber = async (simNumber) => {
+
+    const query = `
+        select *
+        from sim
+        where sim_number = $1
+    `;
+
+    const result = await pool.query(query, [simNumber]);
+    return result.rows[0];
+};   
+
+const createSIM = async (simData) => {
+
+    const query = ` 
+        insert into sim
+        (
+            citizen_id, 
+            sim_company, 
+            sim_number, 
+            registration_date, 
+            expiry_date
+        )
+        values ($1, $2, $3, $4, $5)
+        returning id;
+    `;
+
+    const values = [
+        simData.citizen_id,
+        simData.sim_company,
+        simData.sim_number,
+        simData.registration_date,
+        simData.expiry_date
+    ];
+
+    const result = await pool.query(query, values);
+    return result.rows[0].id;
+};
+
+const processSIMs = async (processedRows) => {
+
+    const summary = {
+
+        totalRows : processedRows.length,
+        newSIMs : 0,
+        duplicateSIMs : 0,
+        rejectedRows: 0
+    };
+
+    for(const row of processedRows)
+    {
+        if(!row.sim_number || !row.sim_company || !row.registration_date || !row.expiry_date)
+        {
+            summary.rejectedRows++;
+            continue;
+        }
+
+        const existingSIM = await findSIMByNumber(row.sim_number);
+
+        if(existingSIM)
+        {
+            summary.duplicateSIMs++;
+            continue;
+        }
+
+        await createSIM(row);
+        summary.newSIMs++;  
+    }
+
+    return summary;
+    
+};
+
 
 module.exports = {
     readCSV,
@@ -113,4 +186,7 @@ module.exports = {
     findCitizenByVoterId,
     createCitizen,
     processCitizens,
+    findSIMByNumber,
+    createSIM,
+    processSIMs
 };
