@@ -8,6 +8,19 @@ const getCitizenByVoterId = async (req, res) => {
 
         const rows = await citizenService.getCitizenByVoterId(voterId);
 
+        const citizen = {
+            voter_id: rows[0].voter_id,
+            first_name: rows[0].first_name,
+            last_name: rows[0].last_name,
+        };
+
+        const sims = rows.map(row => ({
+            sim_company: row.sim_company,
+            sim_number: row.sim_number,
+            registration_date: row.registration_date,
+            expiry_date: row.expiry_date,
+        }));
+
         if (rows.length === 0) {
 
             return res.status(404).json({
@@ -19,7 +32,8 @@ const getCitizenByVoterId = async (req, res) => {
 
         return res.status(200).json({
             success: true,
-            data: rows,
+            citizen,
+            sims,
         });
 
     }
