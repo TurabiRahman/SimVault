@@ -234,3 +234,28 @@ Response
 Downloads
 
 turabi_rahman.csv
+
+
+# ----------------------------
+
+
+Upload API 01
+✅ Receive file using Multer
+✅ Parse CSV
+✅ Validate required columns
+✅ Validate required row fields
+✅ Find existing citizens
+✅ Create new citizens
+✅ Find duplicate SIMs
+✅ Insert new SIMs
+✅ Reject invalid rows
+✅ Return upload summary
+
+API 02
+
+☑ app.js
+☑ Route
+☑ Controller
+⬜ Service
+⬜ Database Query
+⬜ Response Formatting
