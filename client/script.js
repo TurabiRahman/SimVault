@@ -53,19 +53,23 @@ uploadBtn.addEventListener("click", async () => {
             body: formData,
         });
 
-        const result = await response.json();
+        const result = await response.json().catch(() => null);
 
-        if (!result.success) {
-            alert(result.message);
+        //console.log(result);
+
+        if (!response.ok || !result?.success) {
+            alert(result?.message || "Upload failed.");
             return;
         }
 
-        totalRows.innerText = result.summary.totalRows;
-        newSIMs.innerText = result.summary.newSIMs;
-        duplicateSIMs.innerText = result.summary.duplicateSIMs;
-        rejectedRows.innerText = result.summary.rejectedRows;
+        const summary = result.summary || {};
 
-        alert("CSV uploaded successfully.");
+        totalRows.textContent = summary.totalRows ?? 0;
+        newSIMs.textContent = summary.newSIMs ?? 0;
+        duplicateSIMs.textContent = summary.duplicateSIMs ?? 0;
+        rejectedRows.textContent = summary.rejectedRows ?? 0;
+
+        alert(result.message || "CSV uploaded successfully.");
 
     }
 

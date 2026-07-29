@@ -253,9 +253,3 @@ Upload API 01
 
 API 02
 
-☑ app.js
-☑ Route
-☑ Controller
-⬜ Service
-⬜ Database Query
-⬜ Response Formatting

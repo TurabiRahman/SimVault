@@ -14,6 +14,7 @@ const uploadCSV = async (req, res) => {
 
         res.status(200).json({
             success: true,
+            message: "CSV uploaded successfully.",  // given by co-pilot
             summary,
         });
 
