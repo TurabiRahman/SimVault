@@ -8,4 +8,9 @@ router.get(
         citizenController.getCitizenByVoterId
 );
 
+router.get(
+        "/citizens/:voterId/export", 
+        citizenController.exportCitizenCSV
+);      
+
 module.exports = router;

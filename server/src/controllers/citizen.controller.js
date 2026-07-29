@@ -1,5 +1,7 @@
 const citizenService = require("../services/citizen.service");
 
+const { format } = require("@fast-csv/format");
+
 const getCitizenByVoterId = async (req, res) => {
 
     try {
@@ -52,6 +54,32 @@ const getCitizenByVoterId = async (req, res) => {
 
 };
 
+const exportCitizenCSV = async (req, res) => {
+
+    // return res.status(200).json({
+    //     success: true,
+    //     message: "Export API is working.",
+    // });
+
+    const voterId = req.params.voterId;
+
+    const rows = await citizenService.getCitizenByVoterId(voterId);
+
+    if (rows.length === 0) {
+        return res.status(404).json({
+            success: false,
+            message: "Citizen not found.",
+        });
+    }
+
+    res.setHeader("Content-Type", "text/csv");
+    res.setHeader(
+        "Content-Disposition", 
+        `attachment; filename=citizen_${voterId}.csv`
+    );
+};
+
 module.exports = {
     getCitizenByVoterId,
+    exportCitizenCSV,
 };

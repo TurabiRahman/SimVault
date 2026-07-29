@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/TurabiRahman/SimVault#readme",
   "dependencies": {
+    "@fast-csv/format": "^5.0.7",
     "cors": "^2.8.6",
     "csv-parser": "^3.2.1",
     "dotenv": "^17.4.2",
