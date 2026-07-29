@@ -72,11 +72,44 @@ const exportCitizenCSV = async (req, res) => {
         });
     }
 
+    const fileName =
+    `${rows[0].first_name}_${rows[0].last_name}_SIM_Records.csv`;
+
     res.setHeader("Content-Type", "text/csv");
     res.setHeader(
         "Content-Disposition", 
-        `attachment; filename=citizen_${voterId}.csv`
+        `attachment; filename="${fileName}"`
     );
+
+    const csvstream = format({ headers: true });
+
+    csvstream.pipe(res);
+
+    rows.forEach((row) => {
+
+        csvstream.write({
+
+            "Voter ID": row.voter_id,
+
+            "First Name": row.first_name,
+
+            "Last Name": row.last_name,
+
+            "SIM Company": row.sim_company,
+
+            "SIM Number": row.sim_number,
+
+            "Registration Date": row.registration_date
+                .toLocaleDateString("en-CA"),
+
+            "Expiry Date": row.expiry_date
+                .toLocaleDateString("en-CA"),
+
+        });
+
+    });
+
+    csvstream.end();
 };
 
 module.exports = {
