@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMVault - SIM Registration Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- ================= HEADER ================= -->
+
+        <header class="header">
+            <h1>SIMVault</h1>
+            <p>SIM Registration Management System</p>
+        </header>
+
+        <!-- ================= CSV UPLOAD ================= -->
+
+        <section class="card">
+
+            <h2>Upload Registration CSV</h2>
+
+            <div class="upload-box">
+
+                <input
+                    type="file"
+                    id="csvFile"
+                    accept=".csv"
+                >
+
+                <button id="uploadBtn">
+                    Upload CSV
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- ================= SUMMARY ================= -->
+
+        <section class="card">
+
+            <h2>Upload Summary</h2>
+
+            <div class="stats-grid">
+
+                <div class="stat-box">
+                    <span>Total Rows</span>
+                    <h3 id="totalRows">0</h3>
+                </div>
+
+                <div class="stat-box">
+                    <span>New SIMs</span>
+                    <h3 id="newSIMs">0</h3>
+                </div>
+
+                <div class="stat-box">
+                    <span>Duplicate SIMs</span>
+                    <h3 id="duplicateSIMs">0</h3>
+                </div>
+
+                <div class="stat-box">
+                    <span>Rejected Rows</span>
+                    <h3 id="rejectedRows">0</h3>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= SEARCH ================= -->
+
+        <section class="card">
+
+            <h2>Search Citizen</h2>
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="voterIdInput"
+                    placeholder="Enter Voter ID Number"
+                >
+
+                <button id="searchBtn">
+                    Search
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- ================= CITIZEN ================= -->
+
+        <section class="card">
+
+            <h2>Citizen Information</h2>
+
+            <div class="citizen-info">
+
+                <div class="info-item">
+                    <span>Name</span>
+                    <strong id="citizenName">
+                        No Data
+                    </strong>
+                </div>
+
+                <div class="info-item">
+                    <span>Voter ID</span>
+                    <strong id="citizenVoterId">
+                        No Data
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= SIM TABLE ================= -->
+
+        <section class="card">
+
+            <div class="table-header">
+
+                <h2>Registered SIMs</h2>
+
+                <button id="downloadBtn">
+                    Download CSV
+                </button>
+
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>SIM Company</th>
+                            <th>SIM Number</th>
+                            <th>Registration Date</th>
+                            <th>Expiry Date</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="simTableBody">
+
+                        <tr>
+
+                            <td colspan="4" class="empty-row">
+                                Search a citizen to view registered SIMs.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

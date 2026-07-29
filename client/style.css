@@ -1,0 +1,243 @@
+/* ==========================
+   Global
+========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #333;
+}
+
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+/* ==========================
+   Header
+========================== */
+
+.header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.header h1 {
+    font-size: 42px;
+    color: #0d6efd;
+    margin-bottom: 10px;
+}
+
+.header p {
+    color: #666;
+    font-size: 17px;
+}
+
+/* ==========================
+   Cards
+========================== */
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+    margin-bottom: 20px;
+    color: #0d6efd;
+}
+
+/* ==========================
+   Upload
+========================== */
+
+.upload-box {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.upload-box input[type="file"] {
+    flex: 1;
+    min-width: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* ==========================
+   Buttons
+========================== */
+
+button {
+    padding: 11px 22px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #0d6efd;
+    color: white;
+    font-size: 15px;
+    transition: 0.25s;
+}
+
+button:hover {
+    background: #0b5ed7;
+}
+
+button:disabled {
+    background: #999;
+    cursor: not-allowed;
+}
+
+/* ==========================
+   Statistics
+========================== */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px,1fr));
+    gap: 20px;
+}
+
+.stat-box {
+    background: #eef4ff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.stat-box span {
+    display: block;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.stat-box h3 {
+    color: #0d6efd;
+    font-size: 32px;
+}
+
+/* ==========================
+   Search
+========================== */
+
+.search-box {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 250px;
+    padding: 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* ==========================
+   Citizen Information
+========================== */
+
+.citizen-info {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-item span {
+    color: #666;
+    font-size: 14px;
+}
+
+.info-item strong {
+    font-size: 20px;
+    color: #111;
+}
+
+/* ==========================
+   Table
+========================== */
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #0d6efd;
+    color: white;
+}
+
+th,
+td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+    background: #f5f5f5;
+}
+
+.empty-row {
+    text-align: center;
+    color: #777;
+    padding: 30px;
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media (max-width: 768px) {
+
+    .table-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .upload-box,
+    .search-box {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .citizen-info {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+}
