@@ -9,8 +9,6 @@ uploads/
 logs/
 
 # environment
-.env
-.env.local
 
 # secrets
 *.pem
@@ -22,10 +20,10 @@ logs/
 Thumbs.db
 
 # vscode
-.vscode/
 
 # npm
 npm-debug.log*
 
 # coverage
 coverage/
+config.bat
