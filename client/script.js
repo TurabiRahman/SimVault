@@ -218,3 +218,4 @@ function formatDate(dateString) {
         .toLocaleDateString("en-CA");
 
 }
+
