@@ -121,8 +121,31 @@ Foreign-key constraints:
 simvault=#
 
 
+# -------------------------->
 
+in a smooth process of database implementation process
 
+-- Create Citizen table
+CREATE TABLE citizen (
+    id BIGSERIAL PRIMARY KEY,
+    voter_id VARCHAR(20) NOT NULL,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL
+);
+
+-- Create SIM table
+CREATE TABLE sim (
+    id BIGSERIAL PRIMARY KEY,
+    citizen_id BIGINT NOT NULL,
+    sim_company VARCHAR(50) NOT NULL,
+    sim_number VARCHAR(20) UNIQUE NOT NULL,
+    registration_date DATE NOT NULL,
+    expiry_date DATE,
+    CONSTRAINT fk_citizen
+        FOREIGN KEY (citizen_id)
+        REFERENCES citizen(id)
+        ON DELETE CASCADE
+);
 
 # -------------------------->
 
